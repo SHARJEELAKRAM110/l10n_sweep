@@ -1,0 +1,11 @@
+# .pubignore replaces .gitignore when publishing, so repeat its entries.
+.dart_tool/
+build/
+pubspec.lock
+pubspec_overrides.yaml
+.l10n_sweep/
+coverage/
+
+# The sample Flutter app imports Flutter, which this pure Dart package does
+# not depend on. It is only needed by the integration tests in the repository.
+test/fixtures/

@@ -1,0 +1,17 @@
+name: sample_flutter_app
+description: Fixture used by l10n_sweep integration tests.
+publish_to: none
+version: 1.0.0
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  easy_localization: ^3.0.7
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/translations/

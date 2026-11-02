@@ -1,0 +1,2 @@
+# Keep LF everywhere: tests compare fixture files byte-for-byte.
+* text=auto eol=lf

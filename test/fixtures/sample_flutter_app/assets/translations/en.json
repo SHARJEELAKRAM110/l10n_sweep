@@ -1,0 +1,51 @@
+{
+  "app_name": "Sample App",
+  "app": {
+    "version": "1.0.0"
+  },
+  "home": {
+    "title": "Welcome",
+    "description": "Welcome to our application"
+  },
+  "profile": {
+    "title": "My Profile",
+    "edit_button": "Edit Profile"
+  },
+  "items_count": {
+    "zero": "No items",
+    "one": "One item",
+    "other": "{} items"
+  },
+  "greeting": "Hello {name}, welcome to @:app_name",
+  "settings": {
+    "language": "Language",
+    "experimental_feature": "Experimental feature"
+  },
+  "errors": {
+    "network": "Network error {}",
+    "timeout": "The request timed out"
+  },
+  "sections": {
+    "news": "News",
+    "events": "Events"
+  },
+  "tabs": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "actions": {
+    "increment": "Increment"
+  },
+  "onboarding": {
+    "step_1": "Create an account",
+    "step_2": "Verify your email"
+  },
+  "legacy": {
+    "translation": "Old text"
+  },
+  "unused_message": "This message is never used",
+  "old": {
+    "banner": "Old banner",
+    "footer": "Old footer"
+  }
+}

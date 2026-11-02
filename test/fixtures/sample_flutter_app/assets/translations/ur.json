@@ -1,0 +1,51 @@
+{
+  "app_name": "نمونہ ایپ",
+  "app": {
+    "version": "1.0.0"
+  },
+  "home": {
+    "title": "خوش آمدید",
+    "description": "ہماری ایپلیکیشن میں خوش آمدید"
+  },
+  "profile": {
+    "title": "میری پروفائل",
+    "edit_button": "پروفائل میں ترمیم کریں"
+  },
+  "items_count": {
+    "zero": "کوئی آئٹم نہیں",
+    "one": "ایک آئٹم",
+    "other": "{} آئٹمز"
+  },
+  "greeting": "ہیلو {name}، @:app_name میں خوش آمدید",
+  "settings": {
+    "language": "زبان"
+  },
+  "errors": {
+    "network": "نیٹ ورک کی خرابی {}",
+    "timeout": "درخواست کا وقت ختم ہو گیا"
+  },
+  "sections": {
+    "news": "خبریں",
+    "events": "تقریبات"
+  },
+  "tabs": {
+    "home": "ہوم",
+    "settings": "ترتیبات"
+  },
+  "actions": {
+    "increment": "اضافہ کریں"
+  },
+  "onboarding": {
+    "step_1": "اکاؤنٹ بنائیں",
+    "step_2": "اپنی ای میل کی تصدیق کریں"
+  },
+  "legacy": {
+    "translation": "پرانا متن"
+  },
+  "unused_message": "یہ پیغام کبھی استعمال نہیں ہوتا",
+  "old": {
+    "banner": "پرانا بینر",
+    "footer": "پرانا فوٹر"
+  },
+  "ur_only": "صرف اردو"
+}

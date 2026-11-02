@@ -1,0 +1,29 @@
+name: l10n_sweep
+description: >-
+  Find unused easy_localization translation keys in Flutter apps using Dart
+  AST analysis, and remove them safely with previews, confirmation, and backups.
+version: 0.1.0
+repository: https://github.com/ortivex/l10n_sweep
+issue_tracker: https://github.com/ortivex/l10n_sweep/issues
+topics:
+  - localization
+  - easy-localization
+  - i18n
+  - cli
+  - static-analysis
+
+environment:
+  sdk: ^3.9.0
+
+executables:
+  l10n_sweep: l10n_sweep
+
+dependencies:
+  analyzer: '>=13.0.0 <15.0.0'
+  args: ^2.6.0
+  path: ^1.9.0
+  yaml: ^3.1.2
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.26.0

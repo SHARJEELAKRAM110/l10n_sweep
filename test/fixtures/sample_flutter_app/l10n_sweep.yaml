@@ -1,0 +1,16 @@
+l10n_sweep:
+  translations_path: assets/translations
+  primary_locale: en
+  source_paths:
+    - lib
+  excluded_paths:
+    - lib/generated
+  excluded_keys:
+    - app.version
+  ignored_keys:
+    - legacy.translation
+  dynamic_key_patterns:
+    - 'onboarding.step_*'
+  safety:
+    create_backup: true
+    require_confirmation: true
