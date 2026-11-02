@@ -13,7 +13,7 @@ an `UnknownExpr`; the resolver turns it into an unresolved reference.
 ## Development setup
 
 ```bash
-git clone https://github.com/ortivex/l10n_sweep.git
+git clone https://github.com/SHARJEELAKRAM110/l10n_sweep.git
 cd l10n_sweep
 dart pub get
 ```
