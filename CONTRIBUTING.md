@@ -18,7 +18,7 @@ cd l10n_sweep
 dart pub get
 ```
 
-Requirements: Dart SDK 3.9 or newer. Flutter is not needed.
+Requirements: Dart SDK 3.11 or newer. Flutter is not needed.
 
 ## Checks
 

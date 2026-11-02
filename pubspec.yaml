@@ -13,7 +13,7 @@ topics:
   - static-analysis
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.11.0
 
 executables:
   l10n_sweep: l10n_sweep

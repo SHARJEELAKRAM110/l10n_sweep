@@ -80,7 +80,7 @@ those breaks the app at run time. `l10n_sweep` is built around one rule:
 
 ## Requirements
 
-- Dart SDK 3.9 or newer (Flutter 3.35 or newer).
+- Dart SDK 3.11 or newer (Flutter 3.41 or newer).
 - A Flutter project using easy_localization with JSON locale files
   (`en.json`, `en-US.json`, ...). The default `RootBundleAssetLoader` and
   `JsonAssetLoader` layouts are supported.
