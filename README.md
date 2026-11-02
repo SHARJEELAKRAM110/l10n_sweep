@@ -54,6 +54,7 @@ Analysis completed successfully. (3 Dart files, 10 translation calls, 344 ms)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Quick start](#quick-start)
+- [Removing unused keys, step by step](#removing-unused-keys-step-by-step)
 - [How keys are classified](#how-keys-are-classified)
 - [Supported patterns](#supported-patterns)
 - [Dynamic keys and their limitations](#dynamic-keys-and-their-limitations)
@@ -155,6 +156,117 @@ Undo with: dart run l10n_sweep restore --id 20261102-153012-118
 ```
 
 Add `.l10n_sweep/` to your `.gitignore`.
+
+## Removing unused keys, step by step
+
+The commands below use the global install (`l10n_sweep ...`). With a dev
+dependency, write `dart run l10n_sweep ...` instead. Run them from the root
+of your Flutter app (the folder with `pubspec.yaml`), or pass `-C <path>`.
+
+**1. Install and commit.**
+
+```bash
+dart pub global activate l10n_sweep
+git commit -am "Before l10n_sweep"   # so you can always roll back
+```
+
+**2. See the summary.**
+
+```bash
+l10n_sweep analyze
+```
+
+This prints the counts and the list of unused keys. Add `--verbose` only
+when you want the reason and location for every key; the output is long.
+
+**3. Remove the keys.**
+
+Pick one:
+
+```bash
+# A. Remove every key proven unused, without questions.
+l10n_sweep clean --yes
+
+# B. Choose from a checklist that shows only removable keys.
+l10n_sweep clean
+```
+
+In the checklist, keys proven unused are already ticked and keys that need
+review are not. Press `a` to select all, `space` to toggle one key, `Enter`
+to continue, then `y` to confirm. Each key is removed from every locale
+file, and a backup is written first.
+
+**4. Run the app**, open the screens whose texts were removed, and check
+that no raw keys (such as `home.title`) appear.
+
+**5. Undo if needed.**
+
+```bash
+l10n_sweep restore
+```
+
+### `clean --yes` says "Nothing to remove"
+
+```text
+Warning: 20 translation calls have keys that cannot be determined, so no key
+is classified as definitely unused.
+No definitely unused keys found. Nothing to remove.
+```
+
+Some `.tr()` calls use a key held in a variable the analyzer cannot follow,
+such as `item.title.tr()` or `json['label'].tr()`. Any of them could use any
+key, so nothing is proven unused. You have three options:
+
+1. **Annotate the calls (recommended).** List them with
+   `l10n_sweep doctor`, then mark each one:
+
+   ```dart
+   Text(item.titleKey.tr()); // l10n_sweep:keys menu.*, common.ok
+
+   // l10n_sweep:ignore
+   Text(serverMessage.tr());
+   ```
+
+   When every call is resolved or annotated, `clean --yes` works.
+
+2. **Use the checklist.** `l10n_sweep clean`, press `a`, `Enter`, `y`. You
+   review the keys instead of the analyzer.
+
+3. **Turn the protection off.** In `l10n_sweep.yaml`:
+
+   ```yaml
+   l10n_sweep:
+     safety:
+       allow_unresolved_references: true
+   ```
+
+   `clean --yes` then removes keys that no resolved call uses. A key that
+   one of the unresolved calls builds at run time would be removed too, so
+   commit first and test the app afterwards.
+
+### Keys marked "needs review"
+
+```text
+? Continue_Offline   uncertain: the string "Continue_Offline" appears in
+                     source code outside a translation call
+```
+
+The key's text appears in your code, but not inside a translation call the
+analyzer recognizes: for example a map of labels, a custom widget from
+another package, or dead code. `clean --yes` never removes these. Either:
+
+- find the string (`grep -rn "Continue_Offline" lib`, or in PowerShell
+  `Get-ChildItem lib -Recurse -Filter *.dart | Select-String "Continue_Offline"`);
+- if it is translated through your own wrapper, add the wrapper under
+  `translation_functions`;
+- if the code is dead, delete it and run `analyze` again;
+- or select the key in the `clean` checklist.
+
+### Keys only in some locales
+
+Keys that exist in another locale but not in the primary one (shown as
+`not in primary locale`) are never removed by `clean --yes`. Select them in
+the `clean` checklist.
 
 ## How keys are classified
 
@@ -567,6 +679,18 @@ contents changed. The JSON report shape is stable within a
 analyzer cannot determine. Run `dart run l10n_sweep doctor` to list them,
 then annotate each call (`// l10n_sweep:keys ...` or `// l10n_sweep:ignore`)
 or add `dynamic_key_patterns`.
+
+**`clean --yes` removes nothing.** See
+[`clean --yes` says "Nothing to remove"](#clean---yes-says-nothing-to-remove).
+
+**The `--verbose` output is too long.** Use `analyze` without `--verbose`
+for the summary, `clean` for only the removable keys, or
+`report --format markdown` to write everything to a file.
+
+**`l10n_sweep` is not recognized.** Add the pub cache `bin` folder to your
+`PATH` (`dart pub global activate` prints it; on Windows it is
+`%LOCALAPPDATA%\Pub\Cache\bin`), or run
+`dart pub global run l10n_sweep <command>`.
 
 **"No translation calls were found".** Check `source_paths` and
 `excluded_paths`. If the app only translates through functions from another

@@ -5,6 +5,7 @@ description: >-
 version: 0.1.0
 repository: https://github.com/SHARJEELAKRAM110/l10n_sweep
 issue_tracker: https://github.com/SHARJEELAKRAM110/l10n_sweep/issues
+documentation: https://github.com/SHARJEELAKRAM110/l10n_sweep#readme
 topics:
   - localization
   - easy-localization
